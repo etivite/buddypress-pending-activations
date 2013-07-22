@@ -15,7 +15,7 @@ function etivite_bp_pending_activations_users_count() {
 	//if no cache is found
 	if ( !$count = wp_cache_get( 'etivite_bp_pending_activations_count', 'bp' ) ) {
 		
-		$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(u.ID) FROM $wpdb->usermeta m1, $wpdb->users u WHERE u.ID = m1.user_id AND u.user_status = 2 AND m1.meta_key = 'activation_key' ORDER BY u.user_registered ASC" ) );
+		$count = $wpdb->get_var( "SELECT COUNT(u.ID) FROM $wpdb->usermeta m1, $wpdb->users u WHERE u.ID = m1.user_id AND u.user_status = 2 AND m1.meta_key = 'activation_key' ORDER BY u.user_registered ASC" );
 		
 		if ( empty($count) ) $count = 0;
 		
